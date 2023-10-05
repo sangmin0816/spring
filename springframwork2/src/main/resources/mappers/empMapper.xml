@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+    <select id="empList" resultType="kr.ed.haebeop.domain.Emp">
+        select * from emp
+    </select>
+    <insert id="empInsert">
+        insert into emp values(#{emp_no}, #{first_name})
+    </insert>
+    <select id="latestEmp" resultType="kr.ed.haebeop.domain.Emp">
+        select * from emp order by emp_no desc limit 1
+    </select>
+</mapper>
