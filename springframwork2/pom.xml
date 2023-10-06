@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.study2</groupId>
   <artifactId>study2</artifactId>
@@ -12,6 +12,7 @@
     <org.springframework-version>5.3.20</org.springframework-version>
     <org.slf4j-version>2.0.0</org.slf4j-version>
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -263,6 +264,12 @@
       <version>2.4</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.jfinal</groupId>
+      <artifactId>cos</artifactId>
+      <version>2022.2</version>
+    </dependency>
+
     <!--  이미지 편집 라이브러리 imgscalr-lib 4.0 -->
     <dependency>
       <groupId>org.imgscalr</groupId>
@@ -330,11 +337,22 @@
       <version>4.0.1</version>
     </dependency>
 
+<!--     채팅 웹소켓  추가 -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-websocket</artifactId>
+      <version>5.3.20</version>
+    </dependency>
+
+
   </dependencies>
+
+
   <build>
     <finalName>study2</finalName>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
         <version>2.9</version>
         <configuration>

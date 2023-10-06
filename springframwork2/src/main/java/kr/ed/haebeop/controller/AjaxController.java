@@ -8,18 +8,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/ajax/")
 public class AjaxController {
     @GetMapping("")
-    public String ajax(){return "/ajax/ajax";}
+    public String ajax(){return "/test/ajax";}
 
-    @GetMapping("test1")
-    public String ajaxTest1(){return "/ajax/test1";}
     @GetMapping("test1pro")
     @ResponseBody
     public String ajaxTest1Pro(){
         return "GET Transfer Test";
     }
 
-    @GetMapping("test2")
-    public String ajaxTest2(){return "/ajax/test2";}
 
     @PostMapping("test2pro")
     public String ajaxTest2Pro(){
@@ -27,8 +23,6 @@ public class AjaxController {
         return "/";
     }
 
-    @GetMapping("test5")
-    public String ajaxTest5() {return "/ajax/test5";}
 
     @GetMapping("test5pro")
     @ResponseBody
@@ -37,8 +31,6 @@ public class AjaxController {
         return human;
     }
 
-    @GetMapping("test6")
-    public String ajaxTest6() {return "/ajax/test6";}
 
     @PostMapping("test6pro")
     @ResponseBody
@@ -47,12 +39,17 @@ public class AjaxController {
         return human;
     }
 
-    @GetMapping("test7")
-    public String ajaxTest7() {return "/ajax/test7";}
 
     @PostMapping("test7pro")
     @ResponseBody
     public Human ajaxTest7Pro(@RequestBody Human human){
+        System.out.println(human.toString());
+        return human;
+    }
+
+    @PostMapping("test8pro")
+    @ResponseBody
+    public Human ajaxTest8Pro(@RequestBody Human human){
         System.out.println(human.toString());
         return human;
     }

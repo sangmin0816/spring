@@ -7,10 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HaeBeop</title>
     <%@include file="../include/head.jsp"%>
     <style>
-        .btn {
+        body .container .btn {
             margin: 10px;
             display: block;
         }
@@ -38,6 +38,7 @@
     <button type="button" class="btn btn-primary" id="btn7" age="7" name="kim">07_Post + @RequestBody + Object 전송</button>
 
     <button type="button" class="btn btn-primary" id="btn8" age="8" name="kim">08_Post + Parameter + List 전송</button>
+
     <button type="button" class="btn btn-primary" id="btn9" age="9" name="kim">09_Post + Parameter + ResponseEntity Object 전송</button>
     <button type="button" class="btn btn-primary" id="btn10" age="10" name="kim">10_Post + Parameter + ResponseEntity List 전송</button>
 
@@ -127,7 +128,7 @@
             var human = {"age": parseInt($(this).attr("age")), "name": $(this).attr("name")};
             $.ajax({
                 type: "post",
-                url: "${rootPath}/ajax/test7pro",
+                url: "${rootPath}/ajax/test8pro",
                 data: JSON.stringify(human),
                 dataType: "json",
                 contentType: "application/json",

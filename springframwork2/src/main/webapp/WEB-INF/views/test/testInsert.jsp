@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HaeBeop</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <c:set var="path" value="<%=pageContext.getServletContext().getContextPath()%>"/>
 </head>

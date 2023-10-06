@@ -6,18 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 @RequestMapping("/json/")
 public class JsonController {
     @Autowired
-    private TestService testService3;
+    private TestService testService;
 
     @GetMapping("get/{num}")
     @ResponseBody
     public TestVO viewTest(@PathVariable int num) throws Exception {
-        TestVO test = testService3.testGet(num);
+        TestVO test = testService.testGet(num);
         return test;
     }
 
@@ -29,14 +27,14 @@ public class JsonController {
     @PostMapping("insertBody")
     @ResponseBody
     public TestVO insertBody(@RequestBody TestVO test) throws Exception{
-        testService3.testInsert(test);
+        testService.testInsert(test);
         return test;
     }
 
     @PostMapping("insertModel")
     @ResponseBody
     public TestVO insertModel(@ModelAttribute TestVO test) throws Exception{
-        testService3.testInsert(test);
+        testService.testInsert(test);
         return test;
     }
 

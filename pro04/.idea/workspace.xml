@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8968cc51-5119-4766-820e-ceb6a4731108" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/AdminInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/DBConTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/DatePicker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/Holyday.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/JDBCConn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/LunarCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/WebSocketChatHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4jdbc.log4j2.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-security.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframework/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/config/ChatConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/CalendarCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/ChatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/FilesCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/LocaleCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/UserCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/domain/ChatDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/domain/ChatRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/domain/Days365.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/domain/FileDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/domain/Holiday.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/mapper/FileUploadMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/repository/UserRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/repository/UserRepoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/service/ChatService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/util/AdminInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/util/DatePicker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/util/Holyday.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/util/LunarCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/util/WebSocketChatHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/resources/mappers/userMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/resources/messages_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/resources/messages_ko.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/admin/adminBoard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/admin/adminHeader.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/admin/adminUserList.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/files/fileupload.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/include/alert.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/calendar.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/calendarMonth.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/chat.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/holiday.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/holiday2.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/localeTest.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/user/join.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/user/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/user/sidebar.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/user/userGet.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/config/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/AjaxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/AjaxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/JsonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/JsonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/repository/TestRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/repository/TestRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/service/TestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/java/kr/ed/haebeop/service/TestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/resources/GernericXmlApplicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/resources/GernericXmlApplicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/spring-security.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/spring-security.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/ajax/ajax.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/ajax.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/include/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/include/head.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/include/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/testInsert.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/WEB-INF/views/test/testInsert.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springframwork2/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springframwork2/src/main/webapp/index.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2WNjpXa47DFxWGNVZdLbjlALY01" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/sangmin0816/spring/pro04/src/main/webapp/WEB-INF",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\sangmin0816\spring\pro04\src\main\webapp\WEB-INF" />
+      <recent name="D:\sangmin0816\spring\pro04\src\main\resources" />
+      <recent name="D:\sangmin0816\spring\pro04\src\main\java\kr\ed\haebeop" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="kr.ed.haebeop.controller" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8968cc51-5119-4766-820e-ceb6a4731108" name="Changes" comment="" />
+      <created>1696580115299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696580115299</updated>
+      <workItem from="1696580116387" duration="2169000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

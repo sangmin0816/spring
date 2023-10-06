@@ -12,3 +12,5 @@
 <%--jQuery--%>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
+<%--Font Awseom--%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
