@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ed.haebeop.persistence.NoticeMapper">
+    <!-- Notice -->
+    <select id="noticeList" resultType="kr.ed.haebeop.domain.Notice">
+        select * from notice order by regdate desc
+    </select>
+
+    <select id="noticeListPro" resultType="kr.ed.haebeop.domain.Notice">
+        <![CDATA[
+        select * from notice
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        order by regdate desc LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <select id="noticeCount" resultType="integer">
+        <![CDATA[
+        select count(*) from notice
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <select id="noticeListForMain" resultType="kr.ed.haebeop.domain.Notice">
+        select * from notice order by regdate desc limit 4
+    </select>
+
+    <select id="noticeGet" resultType="kr.ed.haebeop.domain.Notice">
+        select * from notice where no=#{no}
+    </select>
+    <insert id="noticeInsert" >
+        insert into notice values(default, #{title}, #{content}, default, default)
+    </insert>
+    <update id="noticeUpdate" >
+        update notice set title=#{title}, content=#{content} where no=#{no}
+    </update>
+    <update id="noticeVisited" >
+        update notice set visited=visited+1 where no=#{no}
+    </update>
+    <delete id="noticeDelete" >
+        delete from notice where no=#{no}
+    </delete>
+</mapper>

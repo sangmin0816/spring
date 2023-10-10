@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ed.haebeop.persistence.DataBoardMapper">
+    <!--  dataBoard  -->
+    <select id="dataBoardList" resultType="kr.ed.haebeop.domain.DataBoard">
+        <![CDATA[
+        select * from databoard
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'author'.toString()">
+                        author LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        order by regdate desc LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <select id="dataBoardGet" resultType="kr.ed.haebeop.domain.DataBoard">
+        select * from databoard where bno=#{bno}
+    </select>
+
+    <select id="dataBoardGetLast" resultType="kr.ed.haebeop.domain.DataBoard">
+        select * from databoard order by bno desc limit 1
+    </select>
+
+    <update id="dataBoardCountUp" >
+        update databoard set visited = visited+1 where bno=#{bno}
+    </update>
+
+    <select id="dataBoardCount" resultType="integer">
+        <![CDATA[
+        select count(*) from databoard
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'author'.toString()">
+                        author LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <insert id="dataBoardInsert" >
+        insert into databoard(title, content, author, relations) values(#{title}, #{content}, #{author}, 'databoard')
+    </insert>
+
+    <update id="dataBoardUpdate" >
+        update databoard set title=#{title}, content=#{content} where bno=#{bno}
+    </update>
+
+    <delete id="dataBoardDelete" >
+        delete from databoard where bno=#{bno}
+    </delete>
+</mapper>

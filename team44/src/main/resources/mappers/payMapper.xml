@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ed.haebeop.persistence.PayMapper">
+    <select id="payAllList" resultType="kr.ed.haebeop.domain.Pay">
+        select * from pay
+    </select>
+
+    <select id="payList" resultType="kr.ed.haebeop.domain.Pay">
+        select * from pay where memId = #{memId}
+    </select>
+
+    <select id="payGet" resultType="kr.ed.haebeop.domain.Pay">
+        select * from pay where payNo = #{payNo}
+    </select>
+
+    <insert id="payInsert">
+        insert into pay(memId, proNo, payPrice, amount, method, pcom, paccount) values(#{memId}, #{proNo}, #{payPrice}, #{amount}, #{method}, #{pcom}, #{paccount})
+    </insert>
+
+    <update id="payUpdate">
+        update pay set memId=#{memId}, proNo=#{proNo}, payPrice=#{payPrice}, amount=#{amount}, method=#{method}, pcom=#{pcom}, paccount=#{paccount}
+    </update>
+
+    <delete id="payDelete">
+        delete from pay where payNo=#{payNo}
+    </delete>
+</mapper>
