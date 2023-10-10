@@ -22,7 +22,7 @@
                         <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                             <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                            <form class="mx-1 mx-md-4" action="${rootPath}/user/join" method="post">
+                            <form class="mx-1 mx-md-4" action="${rootPath}/member/memberInsert" method="post">
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-id-card fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
@@ -41,6 +41,28 @@
                                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="password" id="pw2" class="form-control" placeholder="Repeat your password"/>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row align-items-center mb-4">
+                                    <i class="fas fa-graduation-cap fa-lg me-3 fa-fw"></i>
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="radio" name="grade" id="flexRadioDefault1" value="1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            학부모
+                                        </label>
+                                    </div>
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="radio" name="grade" id="flexRadioDefault2" value="2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            선생님
+                                        </label>
+                                    </div>
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="radio" name="grade" id="flexRadioDefault3" value="3" checked>
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            학생
+                                        </label>
                                     </div>
                                 </div>
 
@@ -90,7 +112,7 @@
 
 
                                 <div class="form-check d-flex justify-content-center mb-5">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
                                     <label class="form-check-label" for="form2Example3c">
                                         I agree all statements in <a href="#!">Terms of service</a>
                                     </label>

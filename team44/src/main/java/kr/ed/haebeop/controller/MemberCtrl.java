@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/member/*")
-public class MemberController {
+public class MemberCtrl {
 
     @Autowired
     private MemberService memberService;
@@ -112,16 +112,40 @@ public class MemberController {
     }
 
     @GetMapping("join")
-    public String join()
+    public String join(){return "/member/join";}
 
     @PostMapping("memberInsert")
-    public String memberInsert(Member dto,  Model model) throws Exception {
-        String ppw = dto.getPw();
+    public String memberInsert(HttpServletRequest request,  Model model) throws Exception {
+        Member dto = new Member();
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        int grade = Integer.parseInt(request.getParameter("grade"));
+        String tel = request.getParameter("tel");
+        String email = request.getParameter("email");
+        String birth = request.getParameter("birth");
+        String addr1 = request.getParameter("addr1");
+        String addr2 = request.getParameter("addr2");
+        String postcode = request.getParameter("postcode");
+
+        dto.setId(id);
+        dto.setName(name);
+        dto.setGrade(grade);
+        dto.setTel(tel);
+        dto.setEmail(email);
+        dto.setBirth(birth);
+        dto.setAddr1(addr1);
+        dto.setAddr2(addr2);
+        dto.setPostcode(postcode);
+
+        String ppw = request.getParameter("pw");
         String pw = pwEncoder.encode(ppw);
+
         dto.setPw(pw);
+
         memberService.memberInsert(dto);
+
         model.addAttribute("msg", "가족이 되신걸 환영합니다.");
-        model.addAttribute("url", "/member/login.do");
+        model.addAttribute("url", "/member/login");
         return "/member/alert";
     }
 

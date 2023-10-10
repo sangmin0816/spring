@@ -21,4 +21,5 @@ public class Member {
     private int point = 0;
     private int grade;
     private boolean state = true;
+    // 0은 관리자, 1 학부모, 2 선생님, 3 학생
 }

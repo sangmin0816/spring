@@ -45,11 +45,11 @@
                 <c:choose>
                     <c:when test="${sid eq 'admin'}">
                         <a href="${headerPath}/member/logout" class="btn btn-outline-light" style="margin: 0px 5px;">Logout</a>
-                        <a href="${headerPath}/member/get" class="btn btn-outline-light" style="margin: 0px 5px;">Mypage</a>
+                        <a href="${headerPath}/member/memberGet" class="btn btn-outline-light" style="margin: 0px 5px;">Mypage</a>
                     </c:when>
                     <c:when test="${not empty sid}">
                         <a href="${headerPath}/member/logout" class="btn btn-outline-light" style="margin: 0px 5px;">Logout</a>
-                        <a href="${headerPath}/member/get" class="btn btn-outline-light" style="margin: 0px 5px;">Mypage</a>
+                        <a href="${headerPath}/member/memberGet" class="btn btn-outline-light" style="margin: 0px 5px;">Mypage</a>
                     </c:when>
                     <c:otherwise>
                         <a href="${headerPath}/member/login" class="btn btn-outline-light" style="margin: 0px 5px;">Login</a>
@@ -58,12 +58,6 @@
                 </c:choose>
 
                 </div>
-
-
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
