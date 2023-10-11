@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ed.haebeop.persistence.QnaMapper">
+    <!-- qna  -->
+    <select id="qnaList" resultType="kr.ed.haebeop.domain.Qna">
+        <![CDATA[
+        select * from qna
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'author'.toString()">
+                        author LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        order by par desc LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <select id="qnaGet" resultType="kr.ed.haebeop.domain.Qna">
+        select * from qna where qno=#{qno}
+    </select>
+
+    <select id="qnaGetPar" resultType="kr.ed.haebeop.domain.Qna">
+        select * from qna where par=#{par}
+    </select>
+
+    <update id="qnaCountUp" >
+        update qna set visited = visited+1 where qno=#{qno}
+    </update>
+
+
+    <select id="qnaCount" resultType="integer">
+        <![CDATA[
+        select count(*) from qna
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'author'.toString()">
+                        author LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <insert id="qnaInsert" >
+        insert into qna(title, content, author, lev, par) values(#{title}, #{content}, #{author}, #{lev}, #{par})
+    </insert>
+
+    <update id="qnaPar" >
+        update qna set par=qno where lev=0 and par=0
+    </update>
+
+    <update id="qnaUpdate" >
+        update qna set title=#{title}, content=#{content} where qno=#{qno}
+    </update>
+
+    <delete id="qnaDelete" >
+        delete from qna where qno=#{qno}
+    </delete>
+
+
+    <!--  free(자유게시판)  -->
+    <select id="freeList" resultType="kr.ed.haebeop.domain.Free">
+        select * from free order by regdate desc
+    </select>
+
+    <select id="freeGet" resultType="kr.ed.haebeop.domain.Free">
+        select * from free where fno=#{fno}
+    </select>
+
+    <update id="freeCountUp" >
+        update free set visited = visited+1 where fno=#{fno}
+    </update>
+
+    <select id="freeCount" resultType="kr.ed.haebeop.domain.Free">
+        select COUNT(*) from free
+    </select>
+
+    <insert id="freeInsert" >
+        insert into free values(default, #{title}, #{content}, #{author}, default, default)
+    </insert>
+
+    <update id="freeUpdate" >
+        update free set title=#{title}, content=#{content} where fno=#{fno}
+    </update>
+
+    <delete id="freeDelete" >
+        delete from free where fno=#{fno}
+    </delete>
+
+
+</mapper>

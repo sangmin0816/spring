@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ed.haebeop.persistence.CourseMapper">
+    <!--  course  -->
+    <select id="courseList" resultType="kr.ed.haebeop.domain.Course">
+        <![CDATA[
+        select * from course
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'author'.toString()">
+                        author LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        order by regdate desc LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <select id="courseGet" resultType="kr.ed.haebeop.domain.DataBoard">
+        select * from course where bno=#{bno}
+    </select>
+
+    <select id="courseGetLast" resultType="kr.ed.haebeop.domain.DataBoard">
+        select * from course order by bno desc limit 1
+    </select>
+
+    <update id="courseCountUp" >
+        update course set visited = visited+1 where bno=#{bno}
+    </update>
+
+    <select id="courseCount" resultType="integer">
+        <![CDATA[
+        select count(*) from course
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'author'.toString()">
+                        author LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <insert id="courseInsert" >
+        insert into course(title, content, author, relations) values(#{title}, #{content}, #{author}, 'course')
+    </insert>
+
+    <update id="courseUpdate" >
+        update course set title=#{title}, content=#{content} where bno=#{bno}
+    </update>
+
+    <delete id="courseDelete" >
+        delete from course where bno=#{bno}
+    </delete>
+</mapper>
