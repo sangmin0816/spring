@@ -27,11 +27,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member memberGet(String id) throws Exception {
-       /* Member member = memberRepo.memberGet(id);
-        if(member!=null){
-            String pw = (String) session.getAttribute("spw");
-            member.setPw(pw);
-        }*/
         return memberRepo.memberGet(id);
     }
 

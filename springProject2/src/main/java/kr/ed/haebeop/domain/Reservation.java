@@ -13,5 +13,5 @@ public class Reservation {
     private int ano;
     private String rdate;
     private String rtime;
-    private boolean isApprove = false;
+    private String status = "pending";
 }

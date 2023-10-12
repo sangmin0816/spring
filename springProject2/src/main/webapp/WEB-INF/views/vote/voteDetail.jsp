@@ -164,7 +164,7 @@
         </section>
     </div>
     <footer class="ft" id="ft">
-        <jsp:include page="../include/footer.jsp" />
+
     </footer>
 </div>
 </body>

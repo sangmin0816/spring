@@ -61,6 +61,8 @@ public class MemberCtrl {
             boolean loginSuccess = pwEncoder.matches(pw, mem.getPw());
             if (loginSuccess) {
                 session.setAttribute("sid", id);
+                session.setAttribute("smembership", mem.getMembership());
+
                 model.addAttribute("msg", "로그인을 성공하셨습니다.");
                 model.addAttribute("url", "/");
                 return "/include/alert";

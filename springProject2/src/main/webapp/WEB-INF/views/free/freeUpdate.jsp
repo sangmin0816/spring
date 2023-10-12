@@ -64,8 +64,7 @@
 			</div>
 		</form>
 	</section>
-	<!-- 푸터 부분 인클루드 -->
-	<jsp:include page="../include/footer.jsp"></jsp:include>
+
 </div>
 </body>
 </html>

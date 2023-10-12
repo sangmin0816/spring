@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="headerPath" value="${pageContext.request.contextPath}"/>
+<c:set var="sid" value='<%=session.getAttribute("sid")%>' />
+<c:set var="smembership" value='<%=session.getAttribute("smembership")%>' />
 
 <header>
     <nav class="navbar-expand-lg navbar bg-primary" data-bs-theme="dark">
@@ -19,7 +21,7 @@
                         <a class="nav-link" href="${headerPath}/">강의</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${headerPath}/reservation/">상담 신청</a>
+                        <a class="nav-link" href="${headerPath}/reservation/calendar">상담 신청</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,20 +48,24 @@
 
                 <div class="d-flex">
                 <c:choose>
-                    <c:when test="${sid eq 'admin'}">
-                        <a href="${headerPath}/member/logout" class="btn btn-outline-light" style="margin: 0px 5px;">Logout</a>
-                        <a href="${headerPath}/member/memberGet" class="btn btn-outline-light" style="margin: 0px 5px;">Mypage</a>
-                    </c:when>
                     <c:when test="${not empty sid}">
                         <a href="${headerPath}/member/logout" class="btn btn-outline-light" style="margin: 0px 5px;">Logout</a>
                         <a href="${headerPath}/member/memberGet" class="btn btn-outline-light" style="margin: 0px 5px;">Mypage</a>
+                        <c:if test="${smembership eq 'admin'}">
+                            <a href="${headerPath}/admin/" class="btn btn-outline-light" style="margin: 0px 5px;">Admin Page</a>
+                        </c:if>
+                        <c:if test="${smembership eq 'teacher'}">
+                            <a href="${headerPath}/teacher/" class="btn btn-outline-light" style="margin: 0px 5px;">Teacher Page</a>
+                        </c:if>
+                        <c:if test="${smembership eq 'academy'}">
+                            <a href="${headerPath}/academy/academyCalendar" class="btn btn-outline-light" style="margin: 0px 5px;">학원 관리</a>
+                        </c:if>
                     </c:when>
                     <c:otherwise>
                         <a href="${headerPath}/member/login" class="btn btn-outline-light" style="margin: 0px 5px;">Login</a>
                         <a href="${headerPath}/member/join" class="btn btn-outline-light" style="margin: 0px 5px;">Join</a>
                     </c:otherwise>
                 </c:choose>
-
                 </div>
             </div>
         </div>

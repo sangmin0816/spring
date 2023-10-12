@@ -13,6 +13,8 @@ public class ApplicationConfig {
     public ObjectMapper mapper() { return new ObjectMapper(); }
 
     @Bean
+    public AcademyService academyService(){return new AcademyServiceImpl();}
+    @Bean
     public AttendanceService attendanceService() {return new AttendanceServiceImpl();}
 
     @Bean
@@ -32,6 +34,9 @@ public class ApplicationConfig {
 
     @Bean
     public QnaService qnaService() {return new QnaServiceImpl();}
+
+    @Bean
+    public ReservationService reservationService() {return new ReservationServiceImpl();}
 
     @Bean
     public MemberService memberService() {return new MemberServiceImpl();}

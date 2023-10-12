@@ -18,7 +18,7 @@ CREATE TABLE MEMBER(
 	id VARCHAR(20) PRIMARY KEY,                             -- (아이디)
 	pw VARCHAR(300) NOT NULL,                               -- (비밀번호)
 	NAME VARCHAR(100) NOT NULL,                             -- (이름)
-	email VARCHAR(100) NOT NULL,                            -- (이메일)
+	email VARCHAR(100),                                     -- (이메일)
 	tel VARCHAR(13),                                        -- (전화번호)
 	addr1 VARCHAR(200),                                     -- 주소
 	addr2 VARCHAR(100),                                     -- 상세 주소
@@ -29,7 +29,9 @@ CREATE TABLE MEMBER(
 	membership varchar(30) default 'student'                -- admin 관리자, adminU 비인증 관리자, teacher 선생님, teacherU 비인증 선생님
 );
 
-INSERT INTO MEMBER VALUES('admin', '$2a$10$oS1.3wpbnpIanIW4RoXxSOea/vGIijBMpLUBxZqurQqNjjMiJHgGa', '관리자', 'admin@tspoon.co.kr', '010-1234-5678', '', '', '', DEFAULT, NULL, DEFAULT, 0);
+INSERT INTO MEMBER(id, pw, name, email, membership) VALUES('admin', '$2a$10$oS1.3wpbnpIanIW4RoXxSOea/vGIijBMpLUBxZqurQqNjjMiJHgGa', '관리자', 'admin@edu.com', 'admin');
+INSERT INTO MEMBER(id, pw, name, email, membership) VALUES('teacher', '$2a$10$oS1.3wpbnpIanIW4RoXxSOea/vGIijBMpLUBxZqurQqNjjMiJHgGa', '선생님', 'teacher@edu.com', 'teacher');
+INSERT INTO MEMBER(id, pw, name, email, membership) VALUES('academy', '$2a$10$oS1.3wpbnpIanIW4RoXxSOea/vGIijBMpLUBxZqurQqNjjMiJHgGa', '원장님', 'academy@edu.com', 'academy');
 
 -- free
 CREATE TABLE free(
@@ -133,13 +135,19 @@ CREATE TABLE attendance (
 
 create table academy(
     ano INT AUTO_INCREMENT PRIMARY KEY,     -- 가맹점 번호
+    id varchar(20),                         -- 가맹점 관리자 아이디
     name varchar(100),                      -- 가맹점 이름
     address varchar(100),                   -- 가맹점 주소
     tel varchar(15),                        -- 가맹점 번호
     email varchar(50),                      -- 가맹점 이메일
     city varchar(20),                       -- 가맹점 시/도
-    district varchar(30)                    -- 가맹점 구/군
+    district varchar(30),                   -- 가맹점 구/군
+    opentime TIME DEFAULT '13:00:00',       -- 개점 시간
+    closetime TIME DEFAULT '20:00:00',      -- 폐점 시간
+    capacity int default 2                  -- 예약 최대 인원
 );
+
+insert into academy(name) values('academy example');
 
 create table reservation(
     rno INT AUTO_INCREMENT PRIMARY KEY,     -- 예약 번호
@@ -147,15 +155,14 @@ create table reservation(
     ano INT,                                -- 가맹점 번호
     rdate DATE,                             -- 예약 날짜
     rtime TIME,                             -- 예약 시간
-    isApprove boolean default false         -- 예약 확정 여부
+    status varchar(20) default 'pending'    -- 예약 확정 여부
 );
 
-create table rCalendar(
-    cno INT AUTO_INCREMENT PRIMARY KEY,     -- 예약 달력 번호
+create table unavailable(
+    uno INT AUTO_INCREMENT PRIMARY KEY,     -- 휴일 번호
     academy INT,                            -- 가맹점 번호
-    rdate DATE,                             -- 예약 날짜
-    rtime TIME,                             -- 예약 시간
-    capacity int default 2                  -- 예약 최대 인원
+    rdate DATE,                             -- 예약 불가 날짜
+    reason varchar(50)                      -- 예약 불가 사유
 );
 
 CREATE TABLE category(

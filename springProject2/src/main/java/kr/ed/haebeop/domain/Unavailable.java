@@ -5,12 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class RCalendar {
-    private int cno;
+@NoArgsConstructor
+public class Unavailable {
+    private int uno;
     private int academy;
     private String rdate;
-    private String rtime;
-    private int capacity = 2;
+    private String reason;
 }

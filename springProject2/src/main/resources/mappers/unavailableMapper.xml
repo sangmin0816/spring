@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ed.haebeop.persistence.UnavailableMapper">
+    <select id="unavailableAcademyMonth" resultType="kr.ed.haebeop.domain.Unavailable">
+        select * from unavailable where academy=#{academy} and MONTH(rdate)=MONTH(#{rdate});
+    </select>
+
+    <insert id="unavailableInsert">
+        insert into unavailable(academy, rdate, reason) values(#{academy}, #{rdate}, #{reason})
+    </insert>
+
+    <delete id="unavailableDelete">
+        delete from unavailable where academy=#{academy} and rdate=#{rdate}
+    </delete>
+</mapper>

@@ -55,7 +55,7 @@
                     <a class="button is-success" href="${rootPath}/notice/noticeList">글 목록</a>
                 </div>
             </form>
-<jsp:include page="../include/footer.jsp" />
+
 </div>
 </body>
 

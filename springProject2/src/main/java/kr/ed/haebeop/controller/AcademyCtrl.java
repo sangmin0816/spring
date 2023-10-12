@@ -2,29 +2,32 @@ package kr.ed.haebeop.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.icu.text.SimpleDateFormat;
-import kr.ed.haebeop.domain.Academy;
+import kr.ed.haebeop.domain.Member;
 import kr.ed.haebeop.domain.Reservation;
 import kr.ed.haebeop.domain.RestDay;
 import kr.ed.haebeop.domain.Unavailable;
 import kr.ed.haebeop.service.AcademyService;
+import kr.ed.haebeop.service.MemberService;
 import kr.ed.haebeop.service.ReservationService;
 import kr.ed.haebeop.service.UnavailableService;
 import kr.ed.haebeop.util.DatePicker;
 import kr.ed.haebeop.util.RestDayUtil;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("/reservation/*")
-public class ReservationCtrl {
+@RequestMapping("/academy/*")
+public class AcademyCtrl {
     @Autowired
     AcademyService academyService;
 
@@ -35,9 +38,9 @@ public class ReservationCtrl {
     UnavailableService unavailableService;
 
     @Autowired
-    HttpSession session;
+    MemberService memberService;
 
-    @GetMapping("calendar")
+    @GetMapping("academyCalendar")
     public String calendar(Model model) throws Exception{
         int ano = 1;
 
@@ -97,64 +100,81 @@ public class ReservationCtrl {
         model.addAttribute("unavailableList", unDayList);
         model.addAttribute("ano", ano);
 
-        return "/reservation/calendar";
+        return "/academy/academyCalendar";
     }
 
-    @PostMapping("selectDay")
-    @ResponseBody
-    public Map<Integer, Integer> calendarSelectDay(@RequestParam("rdate") String rdate, @RequestParam("ano") int ano) {
-        Academy academy = academyService.academyGet(ano);
+    @PostMapping("insertUnavailable")
+    public String insertUnavailable(Model model, HttpServletRequest request){
 
-        int openhour = Integer.parseInt(academy.getOpentime().substring(0, 2));
-        int closehour = Integer.parseInt(academy.getClosetime().substring(0, 2));
-        int capacity = academy.getCapacity();
-        
-        Reservation reserved = new Reservation();
-        reserved.setAno(ano);
-        reserved.setRdate(rdate);
-        
-        List<Reservation> reservations = reservationService.reservationAcademyDateList(reserved);
-
-        Map<Integer, Integer> hourCapacity = new HashMap<>();
-
-        for(int i=openhour; i<closehour; i++){
-            hourCapacity.put(i, capacity);
-        }
-
-        // 예약된 인원 수만큼 빼기
-        for(Reservation r: reservations){
-            int thisTime = Integer.parseInt(r.getRtime().substring(0, 2));
-            int thisCapa = hourCapacity.get(thisTime)-1;
-            hourCapacity.put(thisTime, thisCapa);
-        }
-
-        return hourCapacity;
-    }
-
-    @PostMapping("insertReservation")
-    public String insertReservation(Model model, HttpServletRequest request){
-
-        String id = (String) session.getAttribute("sid");
         int ano = Integer.parseInt(request.getParameter("ano"));
         String rdate = request.getParameter("rdate");
-        String rtime = request.getParameter("rtime")+":00:00";
+        String reason = request.getParameter("reason");
 
-        Reservation reservation = new Reservation();
-        reservation.setId(id);
-        reservation.setAno(ano);
-        reservation.setRdate(rdate);
-        reservation.setRtime(rtime);
+        Unavailable unavailable = new Unavailable();
+        unavailable.setAcademy(ano);
+        unavailable.setRdate(rdate);
+        unavailable.setReason(reason);
 
-        boolean success = reservationService.reservationInsert(reservation);
+        unavailableService.unavailableInsert(unavailable);
 
-        if(success){
-            model.addAttribute("msg", "상담 신청에 성공했습니다. 관리자 승인 시 예약이 확정됩니다. 마이페이지에서 예약 내역을 확인할 수 있습니다.");
-            model.addAttribute("url", "/");
-        } else{
-            model.addAttribute("msg", "상담 신청에 실패했습니다.");
-            model.addAttribute("url", "/reservation/calendar");
-        }
+        model.addAttribute("msg", "등록되었습니다.");
+        model.addAttribute("url", "/academy/academyCalendar");
+
         return "/include/alert";
     }
 
+    @PostMapping("deleteUnavailable")
+    public String deleteUnavailable(Model model, HttpServletRequest request){
+
+        int ano = Integer.parseInt(request.getParameter("ano"));
+        String rdate = request.getParameter("rdate");
+
+        Unavailable unavailable = new Unavailable();
+        unavailable.setAcademy(ano);
+        unavailable.setRdate(rdate);
+
+        unavailableService.unavailableDelete(unavailable);
+
+        model.addAttribute("msg", "삭제되었습니다.");
+        model.addAttribute("url", "/academy/academyCalendar");
+
+        return "/include/alert";
+    }
+
+    @GetMapping("academyReservationList")
+    public String academyReservationList(Model model, HttpServletRequest request){
+        int ano = 1;
+
+        List<Reservation> reservations = reservationService.reservationAcademyList(ano);
+        model.addAttribute("reservationList", reservations);
+
+        return "/academy/academyReservationList";
+    }
+
+    @GetMapping("academyReservationGet")
+    public String academyReservationGet(Model model, HttpServletRequest request) throws Exception {
+        int rno = Integer.parseInt(request.getParameter("rno"));
+        Reservation reservation = reservationService.reservationGet(rno);
+
+        Member member = memberService.memberGet(reservation.getId());
+
+        model.addAttribute("reservation", reservation);
+        model.addAttribute("member", member);
+
+        return "/academy/academyReservationGet";
+    }
+
+    @GetMapping("academyReservationUpdateStatus")
+    public String academyReservationUpdateStatus(HttpServletRequest request) throws Exception {
+        int rno = Integer.parseInt(request.getParameter("rno"));
+        String status = request.getParameter("status");
+
+        Reservation reservation = new Reservation();
+        reservation.setRno(rno);
+        reservation.setStatus(status);
+
+        reservationService.reservationUpdateStatus(reservation);
+
+        return "redirect: academyReservationGet?rno="+rno;
+    }
 }

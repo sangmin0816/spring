@@ -31,7 +31,8 @@ public class DatePicker {
            for(int j=0;j<7;j++){
                if(i!=1 || j+1>=dayOfWeek) {
                    if(n<=9){
-                       week[j] = " "+n;
+                       // week[j] = " "+n;
+                       week[j] = Integer.toString(n);
                    } else {
                        week[j] = Integer.toString(n);
                    }

@@ -15,4 +15,7 @@ public class Academy {
     private String email;
     private String city;
     private String district;
+    private String opentime = "13:00:00";
+    private String closetime= "20:00:00";
+    private int capacity = 2;
 }
