@@ -5,10 +5,63 @@
 
 <mapper namespace="kr.ed.haebeop.persistence.AcademyMapper">
     <select id="academyList" resultType="kr.ed.haebeop.domain.Academy">
-        select * from academy where dateYearMonth = #{dateYearMonth} and author = #{author}
+        <![CDATA[
+        select * from academy
+        ]]>
+        <where>
+             <choose>
+                 <when test="city != null and searchKeyword != null">
+                     city=#{city} AND name LIKE concat('%', #{searchKeyword}, '%')
+                 </when>
+                 <when test="city != null and district == null">
+                     city=#{city}
+                 </when>
+                 <when test="district != null and searchKeyword != null">
+                     city=#{city} AND district=#{district} name LIKE concat('%', #{searchKeyword}, '%')
+                 </when>
+                 <when test="district != null">
+                     city=#{city} AND district=#{district}
+                 </when>
+                 <when test="searchKeyword != null">
+                     name LIKE concat('%', #{searchKeyword}, '%')
+                 </when>
+             </choose>
+        </where>
+        <![CDATA[
+        order by name LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <select id="academyAdminList" resultType="kr.ed.haebeop.domain.Academy">
+        select * from academy where id=#{id}
     </select>
 
     <select id="academyGet" resultType="kr.ed.haebeop.domain.Academy">
         select * from academy where ano=#{ano}
+    </select>
+
+    <select id="academyCount" resultType="integer">
+        <![CDATA[
+        select count(*) from academy
+        ]]>
+        <where>
+            <choose>
+                <when test="city != null and searchKeyword != null">
+                    city=#{city} AND name LIKE concat('%', #{searchKeyword}, '%')
+                </when>
+                <when test="city != null and district == null">
+                    city=#{city}
+                </when>
+                <when test="district != null and searchKeyword != null">
+                    city=#{city} AND district=#{district} name LIKE concat('%', #{searchKeyword}, '%')
+                </when>
+                <when test="district != null">
+                    city=#{city} AND district=#{district}
+                </when>
+                <when test="searchKeyword != null">
+                    name LIKE concat('%', #{searchKeyword}, '%')
+                </when>
+            </choose>
+        </where>
     </select>
 </mapper>

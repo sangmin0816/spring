@@ -29,6 +29,13 @@ CREATE TABLE MEMBER(
 	membership varchar(30) default 'student'                -- admin 관리자, adminU 비인증 관리자, teacher 선생님, teacherU 비인증 선생님
 );
 
+CREATE TABLE teacher(
+    tno INT PRIMARY KEY AUTO_INCREMENT,    -- 선생님 코드 번호
+    id VARCHAR(20) not null,               -- 선생님의 id
+    academy int,                           -- 선생님 소속 학원
+    content VARCHAR(2000)                  -- 선생님 소개
+);
+
 INSERT INTO MEMBER(id, pw, name, email, membership) VALUES('admin', '$2a$10$oS1.3wpbnpIanIW4RoXxSOea/vGIijBMpLUBxZqurQqNjjMiJHgGa', '관리자', 'admin@edu.com', 'admin');
 INSERT INTO MEMBER(id, pw, name, email, membership) VALUES('teacher', '$2a$10$oS1.3wpbnpIanIW4RoXxSOea/vGIijBMpLUBxZqurQqNjjMiJHgGa', '선생님', 'teacher@edu.com', 'teacher');
 INSERT INTO MEMBER(id, pw, name, email, membership) VALUES('academy', '$2a$10$oS1.3wpbnpIanIW4RoXxSOea/vGIijBMpLUBxZqurQqNjjMiJHgGa', '원장님', 'academy@edu.com', 'academy');
@@ -138,6 +145,8 @@ create table academy(
     id varchar(20),                         -- 가맹점 관리자 아이디
     name varchar(100),                      -- 가맹점 이름
     address varchar(100),                   -- 가맹점 주소
+    latitude varchar(30),                   -- 위도
+    longitude varchar(30),                  -- 경도
     tel varchar(15),                        -- 가맹점 번호
     email varchar(50),                      -- 가맹점 이메일
     city varchar(20),                       -- 가맹점 시/도

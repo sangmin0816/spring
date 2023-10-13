@@ -101,11 +101,6 @@ public class MemberCtrl {
         return "/include/alert";
     }
 
-    @GetMapping("type")
-    public String type(){
-        return "/member/type";
-    }
-
     @PostMapping("join")
     public String insertForm(HttpServletRequest request, Model model) throws Exception {
         int grade = Integer.parseInt(request.getParameter("grade"));
@@ -146,7 +141,12 @@ public class MemberCtrl {
 
         memberService.memberInsert(dto);
 
-        model.addAttribute("msg", "가족이 되신걸 환영합니다.");
+
+        if(dto.getMembership().equals("student")||dto.getMembership().equals("parent")){
+            model.addAttribute("msg", "가족이 되신 걸 환영합니다.");
+        } else{
+            model.addAttribute("msg", "미승인 계정이 생성되었습니다. 관리자에게 연락해 승인을 받아주세요.");
+        }
         model.addAttribute("url", "/member/login");
         return "/include/alert";
     }

@@ -10,6 +10,7 @@ import kr.ed.haebeop.service.AcademyService;
 import kr.ed.haebeop.service.ReservationService;
 import kr.ed.haebeop.service.UnavailableService;
 import kr.ed.haebeop.util.DatePicker;
+import kr.ed.haebeop.util.PageAcademy;
 import kr.ed.haebeop.util.RestDayUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,8 @@ public class ReservationCtrl {
     HttpSession session;
 
     @GetMapping("calendar")
-    public String calendar(Model model) throws Exception{
-        int ano = 1;
+    public String calendar(Model model, HttpServletRequest request) throws Exception{
+        int ano = Integer.parseInt(request.getParameter("ano"));
 
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -155,6 +156,40 @@ public class ReservationCtrl {
             model.addAttribute("url", "/reservation/calendar");
         }
         return "/include/alert";
+    }
+
+    @GetMapping("academyMapList")
+    public String academyMapList(HttpServletRequest request, Model model){
+        PageAcademy page = new PageAcademy();
+
+        String city = request.getParameter("sido");
+        String district = request.getParameter("gugun");
+        String keyword = request.getParameter("keyword");
+
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        if(city!=null && !city.isEmpty()){page.setCity(city);}
+        if(district!=null && !district.isEmpty()){page.setDistrict(district);}
+        if(keyword!=null && !keyword.isBlank()){page.setSearchKeyword(keyword);}
+
+        int total = academyService.academyCount(page);
+
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
+
+        model.addAttribute("sido", city);
+        model.addAttribute("gungu", district);
+        model.addAttribute("keyword", keyword);
+
+        List<Academy> academies = academyService.academyList(page);
+
+        model.addAttribute("academyList", academies);
+
+        return "/reservation/academyMapList";
     }
 
 }

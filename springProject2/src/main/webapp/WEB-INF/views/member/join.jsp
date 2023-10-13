@@ -23,17 +23,23 @@
                             <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
                             <form class="mx-1 mx-md-4" action="${rootPath}/member/memberInsert" method="post">
+
+                                <input type="hidden" id="idck" value="no">
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-id-card fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="text" id="id" name="id" class="form-control" placeholder="ID"/>
+                                        <label for="id" id="idStatus" class="form-label">아이디 중복 검사를 진행해주세요</label>
                                     </div>
+                                    <button type="button" class="btn btn-primary ms-3" onclick="idcheck()">중복검사</button>
                                 </div>
 
+                                <input type="hidden" id="pwck" value="no">
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="password" id="pw" name="pw" class="form-control" placeholder="Password"/>
+                                        <label for="id" id="pwStatus" class="form-label">비밀번호를 입력하세요.</label>
                                     </div>
                                 </div>
 
@@ -44,24 +50,32 @@
                                     </div>
                                 </div>
 
+
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <i class="fas fa-graduation-cap fa-lg me-3 fa-fw"></i>
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="radio" name="membership" id="flexRadioDefault3" value="student" checked>
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            학생
+                                        </label>
+                                    </div>
                                     <div class="form-check col">
                                         <input class="form-check-input" type="radio" name="membership" id="flexRadioDefault1" value="parent">
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             학부모
                                         </label>
                                     </div>
+
                                     <div class="form-check col">
-                                        <input class="form-check-input" type="radio" name="membership" id="flexRadioDefault2" value="teacher">
-                                        <label class="form-check-label" for="flexRadioDefault2">
+                                        <input class="form-check-input" type="radio" name="membership" id="teacher" value="teacherU">
+                                        <label class="form-check-label" for="teacher">
                                             선생님
                                         </label>
                                     </div>
                                     <div class="form-check col">
-                                        <input class="form-check-input" type="radio" name="membership" id="flexRadioDefault3" value="student" checked>
-                                        <label class="form-check-label" for="flexRadioDefault3">
-                                            학생
+                                        <input class="form-check-input" type="radio" name="membership" id="academy" value="acadmeyU" checked>
+                                        <label class="form-check-label" for="academy">
+                                            학원
                                         </label>
                                     </div>
                                 </div>
@@ -144,7 +158,6 @@
     $(document).ready(function(){
         $("#pw2").keyup(function(){
             if($("#pw").val()===""||$("#pw2").val()===""){
-                console.log($("#pw2").val())
                 $("#pwStatus").html("<strong style='color: red'>비밀번호를 입력하세요.</strong>");
                 $("#pwck").val("no");
             }
@@ -152,7 +165,7 @@
                 $("#pwStatus").html("<strong style='color: green'>비밀번호가 일치합니다.</strong>");
                 $("#pwck").val("yes");
             } else{
-                $("#pwStatus").text("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+                $("#pwStatus").html("<strong style='color: red'>비밀번호와 비밀번호 확인이 일치하지 않습니다.</strong>");
                 $("#pwck").val("no");
             }
         })

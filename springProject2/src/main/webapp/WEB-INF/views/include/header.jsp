@@ -21,7 +21,7 @@
                         <a class="nav-link" href="${headerPath}/">강의</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${headerPath}/reservation/calendar">상담 신청</a>
+                        <a class="nav-link" href="${headerPath }/reservation/academyMapList">상담 신청</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,7 +58,7 @@
                             <a href="${headerPath}/teacher/" class="btn btn-outline-light" style="margin: 0px 5px;">Teacher Page</a>
                         </c:if>
                         <c:if test="${smembership eq 'academy'}">
-                            <a href="${headerPath}/academy/academyCalendar" class="btn btn-outline-light" style="margin: 0px 5px;">학원 관리</a>
+                            <a href="${headerPath}/academy/academyAdminList" class="btn btn-outline-light" style="margin: 0px 5px;">학원 관리</a>
                         </c:if>
                     </c:when>
                     <c:otherwise>

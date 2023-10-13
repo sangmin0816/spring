@@ -11,6 +11,8 @@ public class Academy {
     private int ano;
     private String name;
     private String address;
+    private String latitude;
+    private String longitude;
     private String tel;
     private String email;
     private String city;

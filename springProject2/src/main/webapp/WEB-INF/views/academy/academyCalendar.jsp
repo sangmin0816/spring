@@ -24,9 +24,9 @@
 
     <div class="row gutters-sm" style="margin-top: 2rem;">
 
-        <div class="container mt-3">
+        <div class="container">
             <h2>${yyyy}년 ${mm}월 달력</h2>
-            <div class="d-flex mt-3">
+            <div class="d-flex">
                 <div class="calendar me-3">
                     <table class="text-center">
                         <thead>

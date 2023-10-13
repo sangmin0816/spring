@@ -2,10 +2,7 @@ package kr.ed.haebeop.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.icu.text.SimpleDateFormat;
-import kr.ed.haebeop.domain.Member;
-import kr.ed.haebeop.domain.Reservation;
-import kr.ed.haebeop.domain.RestDay;
-import kr.ed.haebeop.domain.Unavailable;
+import kr.ed.haebeop.domain.*;
 import kr.ed.haebeop.service.AcademyService;
 import kr.ed.haebeop.service.MemberService;
 import kr.ed.haebeop.service.ReservationService;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +37,23 @@ public class AcademyCtrl {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    HttpSession session;
+
+    @GetMapping("academyInsert")
+    public String academyInsert() {return "/academy/academyInsert";}
+
+    @GetMapping("academyAdminList")
+    public String academyGet(Model model) throws Exception{
+        String id = (String) session.getAttribute("sid");
+
+        List<Academy> academies = academyService.academyAdminList(id);
+
+        model.addAttribute("academyList", academies);
+
+        return "/academy/academyAdminList";
+    }
 
     @GetMapping("academyCalendar")
     public String calendar(Model model) throws Exception{

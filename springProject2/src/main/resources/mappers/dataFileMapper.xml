@@ -28,7 +28,7 @@
     </select>
 
     <insert id="dataFileInsert" >
-        insert into dataFile(fno, fileName, saveName, fileType, relations, bno, saveFolder, relations) values(default, #{fileName}, #{saveName}, #{fileType}, default, #{bno}, #{saveFolder}, #{relations})
+        insert into dataFile(fno, fileName, saveName, fileType, bno, saveFolder, relations) values(default, #{fileName}, #{saveName}, #{fileType}, #{bno}, #{saveFolder}, #{relations})
     </insert>
 
     <update id="dataFileUpdate" >

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HaeBeop</title>
     <%@include file="../include/head.jsp"%>
-    <link rel="stylesheet" href="${rootPath}/resources/css/calendar.css">
+
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
