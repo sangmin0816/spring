@@ -20,7 +20,7 @@
 	<jsp:include page="../include/header.jsp" />
 </header>
 
-<div class="content">
+<div class="content mt-3">
 
 	<section class="page-title bg-02">
 		<div class="container">

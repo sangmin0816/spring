@@ -18,7 +18,7 @@
                         <a class="nav-link" href="${headerPath}/">회사소개</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${headerPath}/">강의</a>
+                        <a class="nav-link" href="${headerPath}/course/courseList">강의</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${headerPath }/reservation/academyMapList">상담 신청</a>

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = {"kr.ed.haebeop.repository", "kr.ed.haebeop.service"})
+@ComponentScan(basePackages = {"kr.ed.haebeop.persistence", "kr.ed.haebeop.service"})
 public class ApplicationConfig {
     @Bean
     public ObjectMapper mapper() { return new ObjectMapper(); }
@@ -20,6 +20,8 @@ public class ApplicationConfig {
     @Bean
     public DataBoardService dataBoardService() {return new DataBoardServiceImpl();}
 
+    @Bean
+    public CourseService courseService(){return new CourseServiceImpl();}
     @Bean
     public CommentService commentService() {return new CommentServiceImpl();}
 

@@ -17,28 +17,24 @@
                     <when test="searchType == 'content'.toString()">
                         content LIKE concat('%', #{searchKeyword}, '%')
                     </when>
-                    <when test="searchType == 'author'.toString()">
+                    <when test="searchType == 'teacher'.toString()">
                         author LIKE concat('%', #{searchKeyword}, '%')
                     </when>
                 </choose>
             </if>
         </where>
         <![CDATA[
-        order by regdate desc LIMIT #{postStart}, #{postCount}
+        LIMIT #{postStart}, #{postCount}
         ]]>
     </select>
 
-    <select id="courseGet" resultType="kr.ed.haebeop.domain.DataBoard">
-        select * from course where bno=#{bno}
+    <select id="courseGet" resultType="kr.ed.haebeop.domain.Course">
+        select * from course where courseNo=#{courseNo}
     </select>
 
-    <select id="courseGetLast" resultType="kr.ed.haebeop.domain.DataBoard">
-        select * from course order by bno desc limit 1
+    <select id="courseGetLast" resultType="kr.ed.haebeop.domain.Course">
+        select * from course order by courseNo desc limit 1
     </select>
-
-    <update id="courseCountUp" >
-        update course set visited = visited+1 where bno=#{bno}
-    </update>
 
     <select id="courseCount" resultType="integer">
         <![CDATA[
@@ -53,7 +49,7 @@
                     <when test="searchType == 'content'.toString()">
                         content LIKE concat('%', #{searchKeyword}, '%')
                     </when>
-                    <when test="searchType == 'author'.toString()">
+                    <when test="searchType == 'teacher'.toString()">
                         author LIKE concat('%', #{searchKeyword}, '%')
                     </when>
                 </choose>
@@ -62,14 +58,14 @@
     </select>
 
     <insert id="courseInsert" >
-        insert into course(title, content, author, relations) values(#{title}, #{content}, #{author}, 'course')
+        insert into course(category, title, content, teacher, textbook, price, capacity, online, startdate, enddate, period, video) values(#{category}, #{title}, #{content}, #{teacher}, #{textbook}, #{price}, #{capacity}, #{online}, #{startdate}, #{enddate}, #{period}, #{video})
     </insert>
 
     <update id="courseUpdate" >
-        update course set title=#{title}, content=#{content} where bno=#{bno}
+        update course set category=#{category}, title=#{title}, content=#{content}, teacher=#{teacher}, textbook=#{textbook}, price=#{price}, capacity=#{capacity}, online=#{online}, startdate=#{startdate}, enddate=#{enddate}, period=#{period}, video=#{video} where courseNo=#{courseNo}
     </update>
 
     <delete id="courseDelete" >
-        delete from course where bno=#{bno}
+        delete from course where courseNo=#{courseNo}
     </delete>
 </mapper>

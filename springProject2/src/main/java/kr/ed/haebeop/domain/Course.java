@@ -13,5 +13,12 @@ public class Course {
     private String title;
     private String content;
     private String teacher;
-    private int price;
+    private boolean textbook = false;
+    private int price = 0;
+    private int capacity = 0;
+    private boolean online = true;
+    private String startdate;
+    private String enddate;
+    private String period;
+    private String video;
 }
