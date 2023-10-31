@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ed.haebeop.persistence.PaymentMapper">
+
+    <select id="paymentList_Member" resultType="kr.ed.haebeop.domain.Payment">
+        SELECT * FROM payment where id=#{id}
+    </select>
+
+    <select id="paymentList_Lecture" resultType="kr.ed.haebeop.domain.Payment">
+        SELECT * FROM payment where dno=#{dno} order by resDate desc
+    </select>
+
+
+<!--    관리자페이지 결제내역-->
+    <select id="paymentList_admin" resultType="kr.ed.haebeop.domain.Payment">
+        <![CDATA[
+        select * from payment
+        ]]>
+        <where>
+            payno = #{payno}
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'id'.toString()">
+                        and id LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'plec'.toString()">
+                        and plec LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        order by resdate desc LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+    <!--    회원 마이페이지-->
+    <select id="paymentList_mypage" resultType="kr.ed.haebeop.domain.Payment">
+        <![CDATA[
+        SELECT * FROM payment
+        ]]>
+        <where>
+            id = #{id}
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'plec'.toString()">
+                        AND plec LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'tecnm'.toString()">
+                        AND tecnm LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        ORDER BY payno DESC, resdate ASC LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+    <select id="paymentCount" resultType="integer">
+        <![CDATA[
+        SELECT COUNT(*) FROM payment
+        ]]>
+        <where>
+            id NOT IN ('admin')
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'id'.toString()">
+                        AND id LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'payno'.toString()">
+                        AND payno LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <select id="paymentGetLast" resultType="integer">
+        select payNo from payment order by payNo desc limit 1
+    </select>
+
+    <insert id="insertpayment">
+        INSERT INTO payment VALUES (DEFAULT, #{id}, #{pno}, #{plec}, #{tecid}, #{tecnm}, #{booknm}, #{pmethod}, #{pcom}, #{pnum}, #{price}, DEFAULT, DEFAULT, DEFAULT)
+    </insert>
+
+    <delete id="deletepayment">
+        delete from payment where payno = #{payno}
+    </delete>
+</mapper>

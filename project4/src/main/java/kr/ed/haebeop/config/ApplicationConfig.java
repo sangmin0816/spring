@@ -43,6 +43,9 @@ public class ApplicationConfig {
     public NoticeService noticeService() {return new NoticeServiceImpl();}
 
     @Bean
+    public PaymentService paymentService() {return new PaymentServiceImpl();}
+
+    @Bean
     public RegisterService registerService() {return new RegisterServiceImpl();}
 
     @Bean
