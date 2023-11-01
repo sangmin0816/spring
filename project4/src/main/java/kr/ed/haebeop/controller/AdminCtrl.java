@@ -34,20 +34,36 @@ public class AdminCtrl {
     @Autowired
     private CommentService commentService;
 
+
+    @GetMapping("/adminBoard")
+    public String adminBoard(){
+        return "/admin/adminBoard";
+    }
+
+    @GetMapping("adminMemberList")
+    public String adminMemberList(Model model){
+        Page page = new Page();
+        List<Member> memberList = memberService.memberList(page);
+        model.addAttribute("memberList", memberList);
+
+        return "/admin/member/memberList";
+    }
+
+
     //member------------------------------------------------
     @RequestMapping(value = "MemberListAdmin", method = RequestMethod.GET)
-    protected String getMemberList(HttpServletRequest request, Model model) throws Exception {
+    protected String memberGetList(HttpServletRequest request, Model model) throws Exception {
         request.setAttribute("msg", "회원 목록을 출력합니다.");
 
         String sid = (String) session.getAttribute("sid");
 
         if(sid != null && sid.equals("admin")) {
-
-            List<Member> memberList = memberService.memberList();
+            Page page = new Page();
+            List<Member> memberList = memberService.memberList(page);
 
             request.setAttribute("memberList", memberList);
 
-            return "/admin/memberList";
+            return "/admin/member/memberList";
         } else {
             return "redirect:/";
         }
@@ -60,13 +76,6 @@ public class AdminCtrl {
         return "/admin/memberGet";
     }
 
-    @GetMapping("delete")
-    public String memberDelete(HttpServletRequest request, HttpSession session, Model model) throws Exception {
-        String id = request.getParameter("id");
-        memberService.memberDelete(id);
-        return "redirect:/admin/MemberListAdmin";
-
-    }
 
 
     //notice------------------------------------------------

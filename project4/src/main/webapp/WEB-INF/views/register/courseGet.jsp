@@ -39,7 +39,7 @@
                 <div class="d-flex justify-content-end">
                     <c:if test="${not empty course.video}"><button class="btn btn-info">맛보기</button></c:if>
                     <c:if test="${course.registered eq 0}">
-                        <a href="${rootPath}/register/registerInsert?courseNo=${course.course.courseNo}" class="btn btn-primary">수강신청</a>
+                        <a href="${rootPath}/payment/paymentInsert?courseNo=${course.course.courseNo}" class="btn btn-primary">수강신청</a>
                     </c:if>
                 </div>
             </div>

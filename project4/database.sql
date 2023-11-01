@@ -170,3 +170,17 @@ CREATE TABLE courseAttendance(
     attdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),     -- (출석 일시)
     status VARCHAR(30)                                          -- (출석 상태) late 지각 / absence 무단결석 / normal 정상 출석 / leave 조퇴 / dayoff 공결
 );
+
+-- 결제
+CREATE TABLE payment(
+    payNo INT PRIMARY KEY AUTO_INCREMENT,
+    id VARCHAR(20) NOT NULL,
+    courseNo INT,
+    pmethod VARCHAR(10),
+    pcom VARCHAR(100),
+    pnum VARCHAR(100),
+    price INT DEFAULT 0,
+    amount INT DEFAULT 1,
+    status INT DEFAULT 0,
+    regdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

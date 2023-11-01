@@ -50,7 +50,7 @@
                             <a href="${headerPath}/member/logout" class="btn btn-outline-light" style="margin: 0px 5px;">로그아웃</a>
                             <a href="${headerPath}/member/memberGet" class="btn btn-outline-light" style="margin: 0px 5px;">회원 정보</a>
                             <c:if test="${smembership eq 'admin'}">
-                                <a href="${headerPath}/admin/" class="btn btn-outline-light" style="margin: 0px 5px;">관리자 페이지</a>
+                                <a href="${headerPath}/admin/adminBoard" class="btn btn-outline-light" style="margin: 0px 5px;">관리자 페이지</a>
                             </c:if>
                             <c:if test="${smembership eq 'teacher'}">
                                 <a href="${headerPath}/teacher/" class="btn btn-outline-light" style="margin: 0px 5px;">선생님 페이지</a>

@@ -43,11 +43,11 @@ public class RootConfig {
     // sql을 대신할 my-batis 설정
     @Bean
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception{
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/mybatis-config.xml"));
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:/mappers/**/*Mapper.xml"));
-        sqlSessionFactoryBean.setDataSource(dataSource());
-        return (SqlSessionFactory) sqlSessionFactoryBean.getObject();
+        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+        sqlSessionFactory.setConfigLocation(applicationContext.getResource("classpath:/mybatis-config.xml"));
+        sqlSessionFactory.setMapperLocations(applicationContext.getResources("classpath*:/mappers/**/*Mapper.xml"));
+        sqlSessionFactory.setDataSource(dataSource());
+        return (SqlSessionFactory) sqlSessionFactory.getObject();
     }
 
     // sqlsession 객체 주입

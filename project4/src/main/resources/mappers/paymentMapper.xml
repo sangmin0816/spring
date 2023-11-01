@@ -33,6 +33,7 @@
         order by resdate desc LIMIT #{postStart}, #{postCount}
         ]]>
     </select>
+
     <!--    회원 마이페이지-->
     <select id="paymentList_mypage" resultType="kr.ed.haebeop.domain.Payment">
         <![CDATA[
@@ -45,9 +46,6 @@
                     <when test="searchType == 'plec'.toString()">
                         AND plec LIKE concat('%', #{searchKeyword}, '%')
                     </when>
-                    <when test="searchType == 'tecnm'.toString()">
-                        AND tecnm LIKE concat('%', #{searchKeyword}, '%')
-                    </when>
                 </choose>
             </if>
         </where>
@@ -55,6 +53,8 @@
         ORDER BY payno DESC, resdate ASC LIMIT #{postStart}, #{postCount}
         ]]>
     </select>
+
+
     <select id="paymentCount" resultType="integer">
         <![CDATA[
         SELECT COUNT(*) FROM payment
@@ -74,13 +74,16 @@
         </where>
     </select>
 
+
     <select id="paymentGetLast" resultType="integer">
         select payNo from payment order by payNo desc limit 1
     </select>
 
+
     <insert id="insertpayment">
-        INSERT INTO payment VALUES (DEFAULT, #{id}, #{pno}, #{plec}, #{tecid}, #{tecnm}, #{booknm}, #{pmethod}, #{pcom}, #{pnum}, #{price}, DEFAULT, DEFAULT, DEFAULT)
+        INSERT INTO payment(id, pno, plec, tecid, tecnm, pmethod, pcom, pnum, price) VALUES (#{id}, #{pno}, #{plec}, #{tecid}, #{tecnm}, #{pmethod}, #{pcom}, #{pnum}, #{price})
     </insert>
+
 
     <delete id="deletepayment">
         delete from payment where payno = #{payno}

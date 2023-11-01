@@ -95,7 +95,7 @@ public class RegisterCtrl {
         }
 
         model.addAttribute("courseList", courseList);
-        return "/courseRegister/courseList";
+        return "/register/courseList";
     };
 
     @GetMapping("courseGet")
@@ -122,7 +122,7 @@ public class RegisterCtrl {
 
         model.addAttribute("course", course);
 
-        return "/courseRegister/courseGet";
+        return "/register/courseGet";
     }
 
     @GetMapping("registerInsert")

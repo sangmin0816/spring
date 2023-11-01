@@ -21,5 +21,6 @@ public class Member {
     private int point = 0;
     private int imageFile;
     private String membership = "student";
-    private boolean isVerify = false;
+    private boolean verify = false;
+    private boolean active = true;
 }

@@ -11,7 +11,7 @@
     <%@include file="../include/head.jsp"%>
 </head>
 <body>
-<%@include file="./adminHeader.jsp"%>
+<%@include file="../include/header.jsp"%>
 <div class="container mt-3">
 
 </div>

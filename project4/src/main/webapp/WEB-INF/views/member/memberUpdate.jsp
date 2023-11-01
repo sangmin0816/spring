@@ -42,7 +42,7 @@
                             </div>
 
 
-                            <input type="hidden" name="membership" value="#{member.membership}">
+                            <input type="hidden" name="membership" value="${member.membership}">
 
                             <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>

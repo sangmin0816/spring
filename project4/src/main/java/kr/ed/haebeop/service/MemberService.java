@@ -1,24 +1,24 @@
 package kr.ed.haebeop.service;
 
 import kr.ed.haebeop.domain.Member;
+import kr.ed.haebeop.util.Page;
 
 
 import java.util.List;
 
 
 public interface MemberService {
-    public List<Member> memberList();
+    public List<Member> memberList(Page page);
+    public int memberCount(Page page);
+    public List<Member> memberTeacherList(Page page);
+    public int memberTeacherCount(Page page);
     public Member memberGet(String id);
-    public int memberCount();
-    public void memberInsert(Member member);
-    public void memberUpdate(Member member);
-    public void memberDelete(String id);
-
-
-
+    public List<Member> getTeacherMain();
     public int idCheck(String id);
-    public Member login(String id);
-    public void memberUpdatePoint(Member member);
-    public void memberVerify(String id);
-    public List<Member> memberMembershipList(String membership);
+    public void memberInsert(Member member);
+    public void updateMemberForTeacher(String id);
+    public int memberPointUpdate(Member member);
+    public int memberUpdate(Member member);
+    public int memberVerifyUpdate(Member member);
+    public int memberActiveUpdate(Member member);
 }

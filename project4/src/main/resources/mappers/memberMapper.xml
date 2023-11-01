@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ed.haebeop.persistence.MemberMapper">
+    <select id="memberList" resultType="kr.ed.haebeop.domain.Member">
+        <![CDATA[
+        SELECT * FROM member
+        ]]>
+        <where>
+            id NOT IN ('admin')
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'id'.toString()">
+                        AND id LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'name'.toString()">
+                        AND name LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        ORDER BY regdate ASC LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <select id="memberCount" resultType="integer">
+        <![CDATA[
+        SELECT COUNT(*) FROM member
+        ]]>
+        <where>
+            id NOT IN ('admin')
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'id'.toString()">
+                        AND id LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'name'.toString()">
+                        AND nm LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <select id="memberTeacherList" resultType="kr.ed.haebeop.domain.Member">
+        <![CDATA[
+        SELECT * FROM member
+        ]]>
+        <where>
+            grade = 1 AND useYn = true
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'name'.toString()">
+                        AND nm LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        ORDER BY regDate ASC LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <select id="memberTeacherCount" resultType="integer">
+        <![CDATA[
+        SELECT COUNT(*) FROM member
+        ]]>
+        <where>
+            membership = 'teacher' AND isVerify=true
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'name'.toString()">
+                        AND name LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <select id="memberGet" resultType="kr.ed.haebeop.domain.Member">
+        SELECT * FROM member WHERE id = #{id}
+    </select>
+
+    <select id="idCheck" resultType="integer">
+        SELECT COUNT(*) FROM member WHERE id = #{id}
+    </select>
+
+    <select id="getTeacherMain" resultType="kr.ed.haebeop.domain.Member">
+        select * from member where grade = 1 limit 4;
+    </select>
+
+
+    <insert id="memberInsert">
+        INSERT INTO member(id, pw, name, email, tel, addr1, addr2, postcode, birth, membership) VALUES (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr1}, #{addr2}, #{postcode},  #{birth}, #{membership})
+    </insert>
+
+    <update id="updateMemberForTeacher">
+        UPDATE member SET grade = 1 WHERE id = #{id}
+    </update>
+
+    <update id="memberPointUpdate">
+        UPDATE member SET point = point + #{point} WHERE id = #{id}
+    </update>
+
+    <update id="memberUpdate">
+        UPDATE member SET pw=#{pw}, email = #{email}, tel = #{tel}, addr1 = #{addr1}, addr2 = #{addr2}, postcode = #{postcode}, birth = #{birth} WHERE id = #{id}
+    </update>
+
+    <update id="memberVerifyUpdate">
+        UPDATE member SET verify=#{verify} WHERE id = #{id}
+    </update>
+
+    <update id="memberActiveUpdate">
+        UPDATE member SET active=#{active} WHERE id = #{id}
+    </update>
+
+    <delete id="removeMember">
+        delete from member where id = #{id}
+    </delete>
+</mapper>

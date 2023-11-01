@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품 결제</title>
+    <title>장바구니 결제</title>
     <%@ include file="../common.jsp"%>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
@@ -19,10 +19,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="content">
-                        <h1 class="page-name">상품 결제</h1>
+                        <h1 class="page-name">장바구니 결제</h1>
                         <ol class="breadcrumb">
                             <li><a href="${rootPath }/">Home</a></li>
-                            <li class="active">상품 결제</li>
+                            <li class="active">장바구니 결제</li>
                         </ol>
                     </div>
                 </div>
@@ -32,10 +32,11 @@
     <div class="container contents">
         <div class="container">
             <div class="box_wrap">
-                <form action="${rootPath }/PayProductPro.do" method="post" class="form_row" onsubmit="return payCheck(this)">
+                <form action="${rootPath }/PayCartPro.do" method="post" class="form_row" onsubmit="return payCheck(this)">
                 <table class="table" id="tb1">
                     <thead>
                     <tr>
+                        <th>번호</th>
                         <th>상품 이름</th>
                         <th>상품 가격</th>
                         <th>개수</th>
@@ -43,18 +44,18 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="cartVO" items="${cartVOList}" varStatus="status">
                     <tr>
+                        <td>${status.count}</td>
                         <td>
-                            ${product.title}
-                                <input type="hidden" name="proNo" value="${product.proNo}">
+                            <input type="checkbox" name="cartCheck" value="${cartVO.cart.cartNo}" hidden="true" checked>
+                                ${cartVO.product.title}
                         </td>
-                        <td>${product.price}</td>
-                        <td>
-                            ${amount}
-                                <input type="hidden" name="amount" value="${amount}">
-                        </td>
-                        <td class="product_price">${product.price*amount}</td>
+                        <td>${cartVO.product.price}</td>
+                        <td>${cartVO.cart.amount}</td>
+                        <td class="product_price">${cartVO.product.price*cartVO.cart.amount}</td>
                     </tr>
+                    </c:forEach>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -141,7 +142,6 @@
     <%@ include file="../commonsub.jsp" %>
 </body>
 </html>
-
 
 
 <script>

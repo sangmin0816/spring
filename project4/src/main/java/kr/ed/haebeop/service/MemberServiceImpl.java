@@ -2,6 +2,7 @@ package kr.ed.haebeop.service;
 
 import kr.ed.haebeop.domain.Member;
 import kr.ed.haebeop.persistence.MemberMapper;
+import kr.ed.haebeop.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,27 +11,26 @@ import java.util.List;
 @Service
 public class MemberServiceImpl implements MemberService{
     @Autowired
-    MemberMapper memberMapper;
+    private MemberMapper memberMapper;
 
     @Override
-    public List<Member> memberList() {
-        return memberMapper.memberList();
+    public List<Member> memberList(Page page) {
+        return memberMapper.memberList(page);
     }
 
     @Override
-    public void memberInsert(Member member) {
-        memberMapper.memberInsert(member);
-    }
-
-
-    @Override
-    public void memberUpdate(Member member) {
-        memberMapper.memberUpdate(member);
+    public int memberCount(Page page) {
+        return memberMapper.memberCount(page);
     }
 
     @Override
-    public int memberCount() {
-        return memberMapper.memberCount();
+    public List<Member> memberTeacherList(Page page) {
+        return null;
+    }
+
+    @Override
+    public int memberTeacherCount(Page page) {
+        return 0;
     }
 
     @Override
@@ -39,10 +39,9 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void memberDelete(String id) {
-        memberMapper.memberDelete(id);
+    public List<Member> getTeacherMain() {
+        return null;
     }
-
 
     @Override
     public int idCheck(String id) {
@@ -50,22 +49,32 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Member login(String id) {
-        return memberMapper.login(id);
+    public void memberInsert(Member member) {
+        memberMapper.memberInsert(member);
     }
 
     @Override
-    public void memberUpdatePoint(Member member) {
-        memberMapper.memberUpdatePoint(member);
+    public void updateMemberForTeacher(String id) {
+
     }
 
     @Override
-    public void memberVerify(String id) {
-        memberMapper.memberVerify(id);
+    public int memberPointUpdate(Member member) {
+        return memberMapper.memberPointUpdate(member);
     }
 
     @Override
-    public List<Member> memberMembershipList(String membership) {
-        return memberMapper.memberMembershipList(membership);
+    public int memberUpdate(Member member) {
+        return memberMapper.memberUpdate(member);
+    }
+
+    @Override
+    public int memberVerifyUpdate(Member member) {
+        return memberMapper.memberVerifyUpdate(member);
+    }
+
+    @Override
+    public int memberActiveUpdate(Member member) {
+        return memberMapper.memberActiveUpdate(member);
     }
 }

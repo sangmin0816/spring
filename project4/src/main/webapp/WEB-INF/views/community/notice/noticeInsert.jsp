@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <title>해법::공지사항</title>
-    <%@include file="../include/head.jsp"%>
+    <%@include file="../../include/head.jsp"%>
     <script type="text/javascript" src="${rootPath}/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>

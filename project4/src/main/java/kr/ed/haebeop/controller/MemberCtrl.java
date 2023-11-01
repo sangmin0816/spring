@@ -25,20 +25,14 @@ import java.util.Map;
 @Controller
 @RequestMapping("/member/*")
 public class MemberCtrl {
-
     @Autowired
     private MemberService memberService;
-
     @Autowired
     private FileUtil fileUtil;
-
     @Autowired
     HttpSession session;
-
     @Autowired
     BCryptPasswordEncoder pwEncoder;
-
-
 
     @GetMapping("memberGet")
     public String memberGet(Model model) throws Exception {
@@ -60,7 +54,7 @@ public class MemberCtrl {
 
     @PostMapping("login")
     public String login(@RequestParam String id, @RequestParam String pw, Model model) throws Exception {
-        Member mem = memberService.login(id);
+        Member mem = memberService.memberGet(id);
         if(mem != null) {
             boolean loginSuccess = pwEncoder.matches(pw, mem.getPw());
             if (loginSuccess) {
@@ -142,8 +136,6 @@ public class MemberCtrl {
 
         if(dto.getMembership().equals("student")){
             model.addAttribute("msg", "가족이 되신 걸 환영합니다.");
-        } else{
-            model.addAttribute("msg", "미승인 계정이 생성되었습니다. 관리자에게 연락해 승인을 받아주세요.");
         }
         model.addAttribute("url", "/member/login");
         return "/include/alert";
@@ -151,7 +143,9 @@ public class MemberCtrl {
 
     @GetMapping("memberDelete")
     public String memberDelete(@RequestParam String id, HttpSession session, Model model) throws Exception {
-        memberService.memberDelete(id);
+        Member member = memberService.memberGet(id);
+        member.setActive(false);
+        memberService.memberActiveUpdate(member);
         session.invalidate();
         model.addAttribute("msg", "회원탈퇴가 정상적으로 진행되었습니다.");
         model.addAttribute("url", "/");
