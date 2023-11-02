@@ -2,7 +2,7 @@ package kr.ed.haebeop.persistence;
 
 import kr.ed.haebeop.domain.Member;
 import kr.ed.haebeop.util.Page;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -10,7 +10,14 @@ import java.util.List;
 public interface MemberMapper {
 
     public List<Member> memberList(Page page);
+
+    public List<Member> memberSearchList(Page page);
+
     public int memberCount(Page page);
+
+    public int memberSearchCount(Page page);
+
+
     public List<Member> memberTeacherList(Page page);
     public int memberTeacherCount(Page page);
     public Member memberGet(String id);

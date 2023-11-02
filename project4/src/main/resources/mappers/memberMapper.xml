@@ -9,14 +9,7 @@
         <where>
             id NOT IN ('admin')
             <if test="searchType != null">
-                <choose>
-                    <when test="searchType == 'id'.toString()">
-                        AND id LIKE concat('%', #{searchKeyword}, '%')
-                    </when>
-                    <when test="searchType == 'name'.toString()">
-                        AND name LIKE concat('%', #{searchKeyword}, '%')
-                    </when>
-                </choose>
+                AND ${searchType} LIKE concat('%', #{searchKeyword}, '%')
             </if>
         </where>
         <![CDATA[

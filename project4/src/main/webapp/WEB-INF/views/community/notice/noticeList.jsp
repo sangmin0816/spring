@@ -26,7 +26,8 @@
     </section>
 
     <div class="container boardTemplate">
-        <jsp:include page="../../include/searchBoard.jsp">
+        <jsp:include page="../../include/searchList.jsp">
+            <jsp:param name="selectOptions" value="title:제목,content:내용,author:작성자"/>
             <jsp:param name="formLink" value="${rootPath}/notice/noticeList"/>
         </jsp:include>
 

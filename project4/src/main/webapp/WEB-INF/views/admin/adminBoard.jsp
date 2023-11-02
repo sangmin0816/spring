@@ -12,7 +12,11 @@
 </head>
 <body>
 <%@include file="../include/header.jsp"%>
-<div class="container mt-3">
+<div class="container content">
+    <jsp:include page="adminSidebar.jsp" />
+
+    <div class="row gutters-sm" style="margin-top: 2rem; justify-content: space-around;">
+    </div>
 
 </div>
 </body>

@@ -16,7 +16,7 @@
 <%@include file="../../include/header.jsp"%>
 </header>
 
-<div class="content">
+<div class="content container">
 	<section class="page-title bg-02">
 		<div class="container">
 			<div class="columns">
@@ -31,7 +31,8 @@
 
 	<div class="container boardTemplate">
 		<%--  검색 --%>
-		<jsp:include page="../../include/searchBoard.jsp">
+		<jsp:include page="../../include/searchList.jsp">
+			<jsp:param name="selectOptions" value="title:제목,content:내용,author:작성자"/>
 			<jsp:param name="formLink" value="${rootPath}/free/freeList"/>
 		</jsp:include>
 

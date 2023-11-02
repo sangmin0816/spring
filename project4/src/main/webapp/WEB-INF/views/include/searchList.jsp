@@ -11,11 +11,21 @@
             <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="search" name="keyword" style="width: 50%;" required>
             <select class="form-select" id="type" name="type" style="width: 30%;" required>
                 <option selected value=''>검색 옵션</option>
-                <option value="title"<c:if test="${type eq 'title' }"> selected</c:if>>제목</option>
-                <option value="content"<c:if test="${type eq 'content' }"> selected</c:if>>내용</option>
-                <option value="author"<c:if test="${type eq 'author' }"> selected</c:if>>작성자</option>
             </select>
             <button class="btn btn-outline-success" type="submit">Search</button>
         </div>
     </form>
 </div>
+
+<c:set var="selectOptions" value='<%=request.getParameter("selectOptions")%>'/>
+
+<script>
+    var selectOptions = "${selectOptions}";
+    var options = selectOptions.split(",");
+
+    for(i in options){
+        var option = options[i].split(":");
+        var newoption = `<option value="\${option[0]}"<c:if test="${type eq '\${option[0]}' }"> selected</c:if>>\${option[1]}</option>`;
+        $("#type").append(newoption);
+    }
+</script>

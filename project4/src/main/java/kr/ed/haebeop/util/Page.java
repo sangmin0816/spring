@@ -1,6 +1,9 @@
 package kr.ed.haebeop.util;
 
 import lombok.Data;
+import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Data
 public class Page {
@@ -16,7 +19,7 @@ public class Page {
     private int totalPageCount = 1;
     private String searchType = "";
     private String searchKeyword = "";
-    
+
     private int courseNo; // course의 세부 게시판에서 사용
 
 
@@ -69,4 +72,32 @@ public class Page {
         }
     }
 
+    public static Page pageStart(HttpServletRequest request, Model model){
+        Page page = new Page();
+
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        page.setSearchType(type);
+
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("curPage", curPage);
+        page.setSearchKeyword(keyword);
+        page.setCurPageNum(curPage);
+
+        return page;
+    }
+
+    public static Page pageEnd(HttpServletRequest request, Model model, Page page, int total){
+        int curPage = page.getCurPageNum();
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("page", page);
+
+        return page;
+    }
 }

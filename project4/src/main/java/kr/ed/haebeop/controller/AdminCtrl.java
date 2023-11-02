@@ -35,47 +35,79 @@ public class AdminCtrl {
     private CommentService commentService;
 
 
-    @GetMapping("/adminBoard")
+    @GetMapping("adminBoard")
     public String adminBoard(){
         return "/admin/adminBoard";
     }
 
-    @GetMapping("adminMemberList")
-    public String adminMemberList(Model model){
+    //member------------------------------------------------
+    @GetMapping("adminMemberList2")
+    public String adminMemberList2(String type, String keyword, String curpage, Model model){
+        int curPage = curpage != null ? Integer.parseInt(curpage) : 1;
+        System.out.println(curPage);
+
         Page page = new Page();
+        page.setSearchType(type);
+        page.setSearchKeyword(keyword);
+
+        int total = memberService.memberCount(page);
+
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
+
         List<Member> memberList = memberService.memberList(page);
         model.addAttribute("memberList", memberList);
-
         return "/admin/member/memberList";
     }
 
+    @GetMapping("adminMemberList")
+    public String adminMemberList(HttpServletRequest request, Model model){
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
 
-    //member------------------------------------------------
-    @RequestMapping(value = "MemberListAdmin", method = RequestMethod.GET)
-    protected String memberGetList(HttpServletRequest request, Model model) throws Exception {
-        request.setAttribute("msg", "회원 목록을 출력합니다.");
+        Page page = new Page();
+        page.setSearchType(type);
+        page.setSearchKeyword(keyword);
 
-        String sid = (String) session.getAttribute("sid");
+        int total = memberService.memberCount(page);
 
-        if(sid != null && sid.equals("admin")) {
-            Page page = new Page();
-            List<Member> memberList = memberService.memberList(page);
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
 
-            request.setAttribute("memberList", memberList);
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
 
-            return "/admin/member/memberList";
-        } else {
-            return "redirect:/";
-        }
+        List<Member> memberList = memberService.memberList(page);
+        model.addAttribute("memberList", memberList);
+        return "/admin/member/memberList";
     }
-    @GetMapping("get")
-    public String memberGet(HttpServletRequest request, Model model) throws Exception {
-        String id = (String) request.getParameter("id");
+
+    @GetMapping("adminMemberGet")
+    public String adminMemberGet(String id, Model model){
         Member member = memberService.memberGet(id);
         model.addAttribute("member", member);
-        return "/admin/memberGet";
+
+        return "/admin/member/memberGet";
     }
 
+    @GetMapping("adminMemberDeactive")
+    public String adminMemberDeactive(String id){
+        Member member = memberService.memberGet(id);
+        member.setActive(false);
+        memberService.memberActiveUpdate(member);
+
+        return "redirect: adminMemberList";
+    }
 
 
     //notice------------------------------------------------
