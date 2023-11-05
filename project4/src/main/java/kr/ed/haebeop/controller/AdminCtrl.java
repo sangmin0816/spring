@@ -114,7 +114,8 @@ public class AdminCtrl {
 
     @RequestMapping(value = "List", method = RequestMethod.GET)
     public String noticeList(Model model) throws Exception{
-        List<Notice> noticeList = noticeService.noticeList();
+        Page page = new Page();
+        List<Notice> noticeList = noticeService.noticeList(page);
         model.addAttribute("noticeList", noticeList);
         return "/admin/notice/noticeList";
     }

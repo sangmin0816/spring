@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface NoticeService {
-    public List<Notice> noticeList();
+    public List<Notice> noticeList(Page page);
     public Notice noticeGet(int noticeNo);
     public int noticeCount();
     public void noticeInsert(Notice notice);

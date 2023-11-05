@@ -8,8 +8,13 @@ import java.util.List;
 
 @Mapper
 public interface NoticeMapper {
-    @Select("SELECT * FROM notice")
-    public List<Notice> noticeList();
+
+
+    @Select({"<script>","SELECT * FROM notice" +
+            "<if test='searchType != null and searchType != \"\"'> WHERE ${searchType} LIKE CONCAT('%', #{searchKeyword}, '%')" +
+            "</if>" +
+            " ORDER BY regdate ASC LIMIT #{postStart}, #{postCount}", "</script>"})
+    public List<Notice> noticeList(Page page);
 
     @Select("SELECT * FROM notice WHERE noticeNo=#{noticeNo}")
     public Notice noticeGet(int noticeNo);

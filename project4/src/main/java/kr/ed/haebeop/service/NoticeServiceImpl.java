@@ -14,8 +14,8 @@ public class NoticeServiceImpl implements NoticeService{
     NoticeMapper noticeMapper;
 
     @Override
-    public List<Notice> noticeList() {
-        return noticeMapper.noticeList();
+    public List<Notice> noticeList(Page page) {
+        return noticeMapper.noticeList(page);
     }
 
     @Override

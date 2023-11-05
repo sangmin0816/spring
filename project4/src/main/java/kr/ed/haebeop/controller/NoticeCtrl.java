@@ -50,23 +50,12 @@ public class NoticeCtrl {
         page.makeLastPageNum(total);
         page.makePostStart(curPage, total);
 
-
         model.addAttribute("type", type);
         model.addAttribute("keyword", keyword);
         model.addAttribute("page", page);
         model.addAttribute("curPage", curPage);
 
-        List<Notice> noticeList;
-        switch (type){
-            case "title":
-                noticeList = noticeService.noticeTitleList(page);
-                break;
-            case "content":
-                noticeList = noticeService.noticeContentList(page);
-                break;
-            default:
-                noticeList = noticeService.noticePageList(page);
-        }
+        List<Notice> noticeList = noticeService.noticeList(page);
 
         model.addAttribute("noticeList", noticeList);
         return "/community/notice/noticeList";
